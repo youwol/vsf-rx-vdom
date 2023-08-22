@@ -7,7 +7,7 @@
 import { inputsCommon, schemaCommonBase } from './common'
 import { child$ } from '@youwol/flux-view'
 import { map } from 'rxjs/operators'
-import { extractConfigWith, Modules } from '@youwol/vsf-core'
+import { Configurations, Modules } from '@youwol/vsf-core'
 
 export const configuration = {
     schema: schemaCommonBase,
@@ -20,7 +20,7 @@ export const module = (fwdParams) => {
         typeof configuration.schema,
         typeof inputs
     >
-    const configInstance = extractConfigWith({
+    const configInstance = Configurations.extractConfigWith({
         configuration,
         values: fwdParams.configurationInstance,
     })

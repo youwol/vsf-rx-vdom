@@ -1,7 +1,7 @@
 {
     "name": "@youwol/vsf-flux-view",
     "description": "Toolbox exposing the library @youwol/flux-view.",
-    "version": "0.1.0-wip",
+    "version": "0.2.0",
     "author": "greinisch@youwol.com",
     "homepage": "https://github.com/youwol/vsf-flux-view#README.md",
     "main": "dist/@youwol/vsf-flux-view.js",
@@ -47,13 +47,13 @@
         ]
     },
     "dependencies": {
-        "@youwol/vsf-core": "^0.1.1",
+        "@youwol/vsf-core": "^0.2.0",
         "@youwol/flux-view": "^1.1.1",
         "rxjs": "^6.5.5"
     },
     "youwol": {
         "cdnDependencies": {
-            "@youwol/vsf-core": "^0.1.1",
+            "@youwol/vsf-core": "^0.2.0",
             "@youwol/flux-view": "^1.1.1",
             "rxjs": "^6.5.5"
         }

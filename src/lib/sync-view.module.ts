@@ -6,14 +6,14 @@
 import { configurationCommon, inputsCommon, moduleCommon } from './common'
 import { childrenFromStore$ } from '@youwol/flux-view'
 import { map } from 'rxjs/operators'
-import { extractConfigWith, Modules } from '@youwol/vsf-core'
+import { Configurations, Modules } from '@youwol/vsf-core'
 
 export const configuration = configurationCommon
 
 export const inputs = inputsCommon
 
 export const module = (fwdParams) => {
-    const configInstance = extractConfigWith({
+    const configInstance = Configurations.extractConfigWith({
         configuration,
         values: fwdParams.configurationInstance,
     })
