@@ -1,5 +1,5 @@
 // noinspection JSValidateJSDoc
-import { Attributes, Modules } from '@youwol/vsf-core'
+import { Configurations, Modules, Contracts } from '@youwol/vsf-core'
 import { VirtualDOM } from '@youwol/flux-view'
 import { Observable } from 'rxjs'
 
@@ -33,12 +33,12 @@ export const schemaCommonBase = {
      * Default to the first matching element from the {@link VsfCore.Projects.Environment.viewsFactory}
      * tested against the message.
      */
-    vDomMap: new Attributes.JsCode({
+    vDomMap: new Configurations.JsCode({
         value: (
             data: unknown,
             module: Modules.ImplementationTrait,
         ): VirtualDOM => {
-            const factory = module.environment.viewsFactory.find((factory) =>
+            const factory = module.environment['viewsFactory'].find((factory) =>
                 factory.isCompatible(data),
             )
             return factory.view(data)
@@ -78,7 +78,7 @@ export const schemaCommonBase = {
      *  () => ({})
      * ```
      */
-    outputs: new Attributes.JsCode({
+    outputs: new Configurations.JsCode({
         value: (
             // eslint-disable-next-line unused-imports/no-unused-vars -- keep variable for documentation purpose
             state: StateCommon,
@@ -94,7 +94,7 @@ export const schemaCommonBase = {
      *  {}
      * ```
      */
-    state: new Attributes.AnyObject({
+    state: new Configurations.AnyObject({
         value: {},
     }),
 }
@@ -119,7 +119,7 @@ export const configurationCommon = {
              * {}
              * ```
              */
-            containerAttributes: new Attributes.AnyObject({
+            containerAttributes: new Configurations.AnyObject({
                 value: {},
             }),
             /**
@@ -150,12 +150,12 @@ export const configurationCommon = {
              * Default to the first matching element from the {@link VsfCore.Projects.Environment.viewsFactory}
              * tested against the message.
              */
-            vDomMap: new Attributes.JsCode({
+            vDomMap: new Configurations.JsCode({
                 value: (
                     data: unknown,
                     module: Modules.ImplementationTrait,
                 ): VirtualDOM => {
-                    const factory = module.environment.viewsFactory.find(
+                    const factory = module.environment['viewsFactory'].find(
                         (factory) => factory.isCompatible(data),
                     )
                     return factory.view(data)
@@ -195,7 +195,7 @@ export const configurationCommon = {
              *  () => ({})
              * ```
              */
-            outputs: new Attributes.JsCode({
+            outputs: new Configurations.JsCode({
                 value: (
                     // eslint-disable-next-line unused-imports/no-unused-vars -- keep variable for documentation purpose
                     state: StateCommon,
@@ -211,7 +211,7 @@ export const configurationCommon = {
              *  {}
              * ```
              */
-            state: new Attributes.AnyObject({
+            state: new Configurations.AnyObject({
                 value: {},
             }),
 
@@ -221,7 +221,7 @@ export const configurationCommon = {
                  *
                  * Default to `()=>0` (ordered as messages reach the module).
                  */
-                orderOperator: new Attributes.JsCode({
+                orderOperator: new Configurations.JsCode({
                     value: (
                         // eslint-disable-next-line unused-imports/no-unused-vars -- keep variable for documentation purpose
                         data1,
@@ -241,7 +241,7 @@ export const inputsCommon = {
      */
     input$: {
         description: 'the input stream',
-        contract: Modules.expect.ofUnknown,
+        contract: Contracts.ofUnknown,
     },
 }
 
