@@ -120,7 +120,9 @@ export const configurationCommon = {
              * ```
              */
             containerAttributes: new Configurations.AnyObject({
-                value: {},
+                value: {
+                    class: 'd-flex flex-column',
+                },
             }),
             /**
              * Defines the mapping function converting the data part of the incoming message to the associated virtual DOM.
