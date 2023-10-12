@@ -65,7 +65,7 @@ const entries = {
 export const setup = {
     name:'@youwol/vsf-flux-view',
         assetId:'QHlvdXdvbC92c2YtZmx1eC12aWV3',
-    version:'0.2.1-wip',
+    version:'0.2.1',
     shortDescription:"Toolbox exposing the library @youwol/flux-view.",
     developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/vsf-flux-view&tab=doc',
     npmPackage:'https://www.npmjs.com/package/@youwol/vsf-flux-view',
@@ -111,7 +111,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `@youwol/vsf-flux-view#0.2.1-wip~dist/@youwol/vsf-flux-view/${entry.name}.js`
+            `@youwol/vsf-flux-view#0.2.1~dist/@youwol/vsf-flux-view/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),
