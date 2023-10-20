@@ -1,5 +1,5 @@
 // noinspection JSValidateJSDoc
-import { Configurations, Modules, Contracts } from '@youwol/vsf-core'
+import { Modules, Contracts } from '@youwol/vsf-core'
 import { VirtualDOM } from '@youwol/flux-view'
 import { Observable } from 'rxjs'
 
@@ -33,7 +33,7 @@ export const schemaCommonBase = {
      * Default to the first matching element from the {@link VsfCore.Projects.Environment.viewsFactory}
      * tested against the message.
      */
-    vDomMap: new Configurations.JsCode({
+    vDomMap: Modules.jsCodeAttribute({
         value: (
             data: unknown,
             module: Modules.ImplementationTrait,
@@ -44,6 +44,7 @@ export const schemaCommonBase = {
             return factory.view(data)
         },
     }),
+
     /**
      * Exposes eventual outputs of the module.
      *
@@ -78,14 +79,17 @@ export const schemaCommonBase = {
      *  () => ({})
      * ```
      */
-    outputs: new Configurations.JsCode({
-        value: (
-            // eslint-disable-next-line unused-imports/no-unused-vars -- keep variable for documentation purpose
-            state: StateCommon,
-        ): {
-            [k: string]: Observable<Modules.OutputMessage>
-        } => ({}),
-    }),
+    outputs: Modules.jsCodeAttribute(
+        {
+            value: (
+                // eslint-disable-next-line unused-imports/no-unused-vars -- keep variable for documentation purpose
+                state: StateCommon,
+            ): {
+                [k: string]: Observable<Modules.OutputMessage>
+            } => ({}),
+        },
+        { override: 'final' },
+    ),
     /**
      * Defines a state bound to the module, usually to define {@link outputs}.
      *
@@ -94,9 +98,12 @@ export const schemaCommonBase = {
      *  {}
      * ```
      */
-    state: new Configurations.AnyObject({
-        value: {},
-    }),
+    state: Modules.anyObjectAttribute(
+        {
+            value: {},
+        },
+        { override: 'final' },
+    ),
 }
 
 // noinspection JSValidateJSDoc
@@ -119,102 +126,10 @@ export const configurationCommon = {
              * {}
              * ```
              */
-            containerAttributes: new Configurations.AnyObject({
+            containerAttributes: Modules.anyObjectAttribute({
                 value: {
                     class: 'd-flex flex-column',
                 },
-            }),
-            /**
-             * Defines the mapping function converting the data part of the incoming message to the associated virtual DOM.
-             * Function arguments:
-             * *  message: incoming message
-             * *  module: instance of this module, see {@link module}
-             * Return a Virtual DOM from [@youwol/flux-view](https://l.youwol.com/doc/@youwol/flux-view).
-             *
-             * Here is an example for a message that conveys data of type `{value, id}`:
-             *
-             * ```js
-             * (data, module) => {
-             *
-             *      return {
-             *          class: 'd-flex align-items-center',
-             *          children:[
-             *              {
-             *                  innerText: data.id
-             *              },
-             *              {
-             *                  innerText: data.value
-             *              },
-             *          ]
-             *      }
-             * }
-             *
-             * Default to the first matching element from the {@link VsfCore.Projects.Environment.viewsFactory}
-             * tested against the message.
-             */
-            vDomMap: new Configurations.JsCode({
-                value: (
-                    data: unknown,
-                    module: Modules.ImplementationTrait,
-                ): VirtualDOM => {
-                    const factory = module.environment['viewsFactory'].find(
-                        (factory) => factory.isCompatible(data),
-                    )
-                    return factory.view(data)
-                },
-            }),
-            /**
-             * Exposes eventual outputs of the module.
-             *
-             * Outputs are referenced in the three attributes:
-             *   *  **state**: encapsulates their declaration using observables
-             *   *  **vDomMap**: declare the DOM's events that initiate the trigger
-             *   *  **outputs**: exposed some of the state's observables as outputs.
-             *
-             * Here is a typical example for a message that conveys data of type `{value, id}`:
-             * ```js
-             * {
-             *      state: {
-             *          selected$: new Subject()
-             *      },
-             *      vDomMap: (message, module) => {
-             *          return {
-             *              class: 'd-flex align-items-center',
-             *              children:[
-             *                  { innerText: message.data.id },
-             *                  { innerText: message.data.value },
-             *              ],
-             *              onClick: () => module.state.selected$.next(message.data.id)
-             *      },
-             *      outputs: (state) => ({
-             *          selected$: state.selected$
-             *      }),
-             * }
-             * ```
-             *
-             * Default to:
-             * ```js
-             *  () => ({})
-             * ```
-             */
-            outputs: new Configurations.JsCode({
-                value: (
-                    // eslint-disable-next-line unused-imports/no-unused-vars -- keep variable for documentation purpose
-                    state: StateCommon,
-                ): {
-                    [k: string]: Observable<Modules.OutputMessage>
-                } => ({}),
-            }),
-            /**
-             * Defines a state bound to the module, usually to define {@link outputs}.
-             *
-             * Default to:
-             * ```js
-             *  {}
-             * ```
-             */
-            state: new Configurations.AnyObject({
-                value: {},
             }),
 
             options: {
@@ -223,7 +138,7 @@ export const configurationCommon = {
                  *
                  * Default to `()=>0` (ordered as messages reach the module).
                  */
-                orderOperator: new Configurations.JsCode({
+                orderOperator: Modules.jsCodeAttribute({
                     value: (
                         // eslint-disable-next-line unused-imports/no-unused-vars -- keep variable for documentation purpose
                         data1,
