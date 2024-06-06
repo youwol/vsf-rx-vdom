@@ -5,7 +5,6 @@
  * @module
  */
 import { inputsCommon, schemaCommonBase } from './common'
-import { child$ } from '@youwol/flux-view'
 import { map } from 'rxjs/operators'
 import { Configurations, Modules } from '@youwol/vsf-core'
 
@@ -15,12 +14,11 @@ export const configuration = {
 
 export const inputs = inputsCommon
 
-export const module = (fwdParams) => {
-    type OutputMapper = Modules.OutputMapperArg<
-        typeof configuration.schema,
-        typeof inputs
-    >
-    const configInstance = Configurations.extractConfigWith({
+export const module = (fwdParams: Modules.ForwardArgs) => {
+    type TSchema = typeof configuration.schema
+    type TInputs = typeof inputs
+    type OutputMapper = Modules.OutputMapperArg<TSchema, TInputs>
+    const configInstance = Configurations.extractConfigWith<TSchema>({
         configuration,
         values: fwdParams.configurationInstance,
     })
@@ -33,14 +31,20 @@ export const module = (fwdParams) => {
             },
             state: configInstance.state,
             html: (m) => {
-                return child$(
-                    m.inputSlots.input$.preparedMessage$.pipe(
-                        map((m: Modules.ProcessingMessage) => {
-                            return m.data
-                        }),
-                    ),
-                    (message) => configInstance.vDomMap(message, m),
-                )
+                return {
+                    tag: 'div',
+                    children: [
+                        {
+                            source$: m.inputSlots.input$.preparedMessage$.pipe(
+                                map((m: Modules.ProcessingMessage) => {
+                                    return m.data
+                                }),
+                            ),
+                            vdomMap: (message) =>
+                                configInstance.vdomMap(message, m),
+                        },
+                    ],
+                }
             },
         },
         fwdParams,

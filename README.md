@@ -1,19 +1,19 @@
-# @youwol/vsf-flux-view
+# @youwol/vsf-rx-vdom
 
-Toolbox exposing the library @youwol/flux-view.
+Toolbox exposing the library @youwol/rx-vdom.
 
 This library is part of the hybrid cloud/local ecosystem
 [YouWol](https://platform.youwol.com/applications/@youwol/platform/latest).
 
 ## Links
 
-[Online user-guide](https://l.youwol.com/doc/@youwol/vsf-flux-view)
+[Online user-guide](https://l.youwol.com/doc/@youwol/vsf-rx-vdom)
 
-[Developers documentation](https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/vsf-flux-view&tab=doc)
+[Developers documentation](https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/vsf-rx-vdom&tab=doc)
 
-[Package on npm](https://www.npmjs.com/package/@youwol/vsf-flux-view)
+[Package on npm](https://www.npmjs.com/package/@youwol/vsf-rx-vdom)
 
-[Source on GitHub](https://github.com/youwol/vsf-flux-view)
+[Source on GitHub](https://github.com/youwol/vsf-rx-vdom)
 
 # Installation, Build, Test
 

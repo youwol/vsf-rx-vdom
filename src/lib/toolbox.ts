@@ -1,13 +1,13 @@
 import { Modules } from '@youwol/vsf-core'
 import { module as view } from './view.module'
-import { module as accView } from './acc-view.module'
+import { module as accView } from './append-view.module'
 import { module as syncView } from './sync-view.module'
 import { basePathDoc, urlModuleDoc } from './constants'
 import { setup } from '../auto-generated'
 
 export function toolbox() {
     return {
-        name: 'fluxView',
+        name: 'rx-vdom',
         uid: setup.name,
         origin: {
             packageName: setup.name,
@@ -24,7 +24,7 @@ export function toolbox() {
         modules: [
             new Modules.Module({
                 declaration: {
-                    typeId: 'accView',
+                    typeId: 'AppendView',
                     documentation: urlModuleDoc(setup.name, 'AccView'),
                 },
                 implementation: ({ fwdParams }) => {
@@ -33,7 +33,7 @@ export function toolbox() {
             }),
             new Modules.Module({
                 declaration: {
-                    typeId: 'syncView',
+                    typeId: 'SyncView',
                     documentation: urlModuleDoc(setup.name, 'SyncView'),
                 },
                 implementation: ({ fwdParams }) => {
