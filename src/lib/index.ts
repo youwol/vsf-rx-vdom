@@ -6,5 +6,5 @@
 export * from './toolbox'
 
 export * as View from './view.module'
-export * as SyncView from './sync-view.module'
-export * as AccView from './acc-view.module'
+export * as SyncView from './append-view.module'
+export * as AppendView from './sync-view.module'

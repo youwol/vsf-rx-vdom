@@ -1,48 +1,48 @@
 
 const runTimeDependencies = {
     "externals": {
-        "@youwol/vsf-core": "^0.2.4",
-        "@youwol/flux-view": "^1.1.1",
-        "rxjs": "^6.5.5"
+        "@youwol/rx-vdom": "^1.0.2",
+        "@youwol/vsf-core": "^0.3.1",
+        "rxjs": "^7.5.6"
     },
     "includedInBundle": {}
 }
 const externals = {
+    "@youwol/rx-vdom": {
+        "commonjs": "@youwol/rx-vdom",
+        "commonjs2": "@youwol/rx-vdom",
+        "root": "@youwol/rx-vdom_APIv1"
+    },
     "@youwol/vsf-core": {
         "commonjs": "@youwol/vsf-core",
         "commonjs2": "@youwol/vsf-core",
-        "root": "@youwol/vsf-core_APIv02"
-    },
-    "@youwol/flux-view": {
-        "commonjs": "@youwol/flux-view",
-        "commonjs2": "@youwol/flux-view",
-        "root": "@youwol/flux-view_APIv1"
+        "root": "@youwol/vsf-core_APIv03"
     },
     "rxjs": {
         "commonjs": "rxjs",
         "commonjs2": "rxjs",
-        "root": "rxjs_APIv6"
+        "root": "rxjs_APIv7"
     },
     "rxjs/operators": {
         "commonjs": "rxjs/operators",
         "commonjs2": "rxjs/operators",
         "root": [
-            "rxjs_APIv6",
+            "rxjs_APIv7",
             "operators"
         ]
     }
 }
 const exportedSymbols = {
+    "@youwol/rx-vdom": {
+        "apiKey": "1",
+        "exportedSymbol": "@youwol/rx-vdom"
+    },
     "@youwol/vsf-core": {
-        "apiKey": "02",
+        "apiKey": "03",
         "exportedSymbol": "@youwol/vsf-core"
     },
-    "@youwol/flux-view": {
-        "apiKey": "1",
-        "exportedSymbol": "@youwol/flux-view"
-    },
     "rxjs": {
-        "apiKey": "6",
+        "apiKey": "7",
         "exportedSymbol": "rxjs"
     }
 }
@@ -51,7 +51,7 @@ const mainEntry : {entryFile: string,loadDependencies:string[]} = {
     "entryFile": "./lib/toolbox.ts",
     "loadDependencies": [
         "@youwol/vsf-core",
-        "@youwol/flux-view",
+        "@youwol/rx-vdom",
         "rxjs"
     ]
 }
@@ -59,19 +59,19 @@ const mainEntry : {entryFile: string,loadDependencies:string[]} = {
 const secondaryEntries : {[k:string]:{entryFile: string, name: string, loadDependencies:string[]}}= {}
 
 const entries = {
-     '@youwol/vsf-flux-view': './lib/toolbox.ts',
-    ...Object.values(secondaryEntries).reduce( (acc,e) => ({...acc, [`@youwol/vsf-flux-view/${e.name}`]:e.entryFile}), {})
+     '@youwol/vsf-rx-vdom': './lib/toolbox.ts',
+    ...Object.values(secondaryEntries).reduce( (acc,e) => ({...acc, [`@youwol/vsf-rx-vdom/${e.name}`]:e.entryFile}), {})
 }
 export const setup = {
-    name:'@youwol/vsf-flux-view',
-        assetId:'QHlvdXdvbC92c2YtZmx1eC12aWV3',
-    version:'0.2.2',
-    shortDescription:"Toolbox exposing the library @youwol/flux-view.",
-    developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/vsf-flux-view&tab=doc',
-    npmPackage:'https://www.npmjs.com/package/@youwol/vsf-flux-view',
-    sourceGithub:'https://github.com/youwol/vsf-flux-view',
-    userGuide:'https://l.youwol.com/doc/@youwol/vsf-flux-view',
-    apiVersion:'02',
+    name:'@youwol/vsf-rx-vdom',
+        assetId:'QHlvdXdvbC92c2YtcngtdmRvbQ==',
+    version:'0.3.0-wip',
+    shortDescription:"Toolbox exposing the library @youwol/rx-vdom.",
+    developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/vsf-rx-vdom&tab=doc',
+    npmPackage:'https://www.npmjs.com/package/@youwol/vsf-rx-vdom',
+    sourceGithub:'https://github.com/youwol/vsf-rx-vdom',
+    userGuide:'https://l.youwol.com/doc/@youwol/vsf-rx-vdom',
+    apiVersion:'03',
     runTimeDependencies,
     externals,
     exportedSymbols,
@@ -96,7 +96,7 @@ export const setup = {
             modules,
             scripts,
         }).then(() => {
-            return window[`@youwol/vsf-flux-view_APIv02`]
+            return window[`@youwol/vsf-rx-vdom_APIv03`]
         })
     },
     installAuxiliaryModule: ({name, cdnClient, installParameters}:{
@@ -111,7 +111,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `@youwol/vsf-flux-view#0.2.2~dist/@youwol/vsf-flux-view/${entry.name}.js`
+            `@youwol/vsf-rx-vdom#0.3.0-wip~dist/@youwol/vsf-rx-vdom/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),
@@ -122,7 +122,7 @@ export const setup = {
             modules,
             scripts,
         }).then(() => {
-            return window[`@youwol/vsf-flux-view/${entry.name}_APIv02`]
+            return window[`@youwol/vsf-rx-vdom/${entry.name}_APIv03`]
         })
     },
     getCdnDependencies(name?: string){

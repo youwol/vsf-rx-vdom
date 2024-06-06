@@ -1,6 +1,6 @@
 // noinspection JSValidateJSDoc
 import { Modules, Contracts } from '@youwol/vsf-core'
-import { VirtualDOM } from '@youwol/flux-view'
+import { AnyVirtualDOM } from '@youwol/rx-vdom'
 import { Observable } from 'rxjs'
 
 // noinspection JSValidateJSDoc
@@ -33,11 +33,11 @@ export const schemaCommonBase = {
      * Default to the first matching element from the {@link VsfCore.Projects.Environment.viewsFactory}
      * tested against the message.
      */
-    vDomMap: Modules.jsCodeAttribute({
+    vdomMap: Modules.jsCodeAttribute({
         value: (
             data: unknown,
             module: Modules.ImplementationTrait,
-        ): VirtualDOM => {
+        ): AnyVirtualDOM => {
             const factory = module.environment['viewsFactory'].find((factory) =>
                 factory.isCompatible(data),
             )
@@ -113,7 +113,7 @@ export const configurationCommon = {
         ...{
             /**
              * Defines the attributes applied on the container of the children elements created
-             * using {@link vDomMap}, e.g.:
+             * using {@link vdomMap}, e.g.:
              * ```js
              * {
              *     class:'d-flex',

@@ -3,7 +3,6 @@
  *
  * @module
  */
-import { childrenAppendOnly$ } from '@youwol/flux-view'
 import { map } from 'rxjs/operators'
 import { configurationCommon, inputsCommon, moduleCommon } from './common'
 import { Configurations, Modules } from '@youwol/vsf-core'
@@ -17,13 +16,11 @@ export const module = (fwdParams) => {
         configuration,
         values: fwdParams.configurationInstance,
     })
-    return moduleCommon(fwdParams, configInstance, (m, vDomMap) =>
-        childrenAppendOnly$(
-            m.inputSlots.input$.preparedMessage$.pipe(map((m) => [m])),
-            (message: Modules.ProcessingMessage) => vDomMap(message.data, m),
-            {
-                orderOperator: configInstance.options.orderOperator,
-            },
-        ),
-    )
+    return moduleCommon(fwdParams, configInstance, (m, vdomMap) => ({
+        policy: 'append',
+        source$: m.inputSlots.input$.preparedMessage$.pipe(map((m) => [m])),
+        vdomMap: (message: Modules.ProcessingMessage) =>
+            vdomMap(message.data, m),
+        orderOperator: configInstance.options.orderOperator,
+    }))
 }
