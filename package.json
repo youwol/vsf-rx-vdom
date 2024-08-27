@@ -1,7 +1,7 @@
 {
     "name": "@youwol/vsf-rx-vdom",
     "description": "Toolbox exposing the library @youwol/rx-vdom.",
-    "version": "0.3.0",
+    "version": "0.3.1-wip",
     "author": "greinisch@youwol.com",
     "homepage": "https://github.com/youwol/vsf-rx-vdom#README.md",
     "main": "dist/@youwol/vsf-rx-vdom.js",

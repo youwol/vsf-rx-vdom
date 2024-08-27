@@ -65,7 +65,7 @@ const entries = {
 export const setup = {
     name:'@youwol/vsf-rx-vdom',
         assetId:'QHlvdXdvbC92c2YtcngtdmRvbQ==',
-    version:'0.3.0',
+    version:'0.3.1-wip',
     shortDescription:"Toolbox exposing the library @youwol/rx-vdom.",
     developerDocumentation:'https://platform.youwol.com/applications/@youwol/cdn-explorer/latest?package=@youwol/vsf-rx-vdom&tab=doc',
     npmPackage:'https://www.npmjs.com/package/@youwol/vsf-rx-vdom',
@@ -111,7 +111,7 @@ export const setup = {
         const parameters = installParameters || {}
         const scripts = [
             ...(parameters.scripts || []),
-            `@youwol/vsf-rx-vdom#0.3.0~dist/@youwol/vsf-rx-vdom/${entry.name}.js`
+            `@youwol/vsf-rx-vdom#0.3.1-wip~dist/@youwol/vsf-rx-vdom/${entry.name}.js`
         ]
         const modules = [
             ...(parameters.modules || []),
